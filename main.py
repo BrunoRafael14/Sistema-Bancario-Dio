@@ -1,3 +1,6 @@
+from functions.deposito import fazer_deposito
+from functions.extrato import puxar_extrato
+
 menu = """
 
 [d] Depositar
@@ -18,14 +21,10 @@ while True:
     opcao = input(menu)
 
     if opcao == "d":
-        valor = float(input("Informe o valor do depósito: "))
-
-        if valor > 0:
-            saldo += valor
-            extrato += f"Depósito: R$ {valor:.2f}\n"
-
-        else:
-            print("Operação falhou! O valor informado é inválido.")
+        while True:
+            valor = float(input("Informe o valor do Deposito: "))
+            saldo, extrato = fazer_deposito(valor, saldo, extrato)
+            break
 
     elif opcao == "s":
         valor = float(input("Informe o valor do saque: "))
@@ -54,10 +53,7 @@ while True:
             print("Operação falhou! O valor informado é inválido.")
 
     elif opcao == "e":
-        print("\n================ EXTRATO ================")
-        print("Não foram realizadas movimentações." if not extrato else extrato)
-        print(f"\nSaldo: R$ {saldo:.2f}")
-        print("==========================================")
+        puxar_extrato(extrato, saldo=saldo)
 
     elif opcao == "q":
         break
