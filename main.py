@@ -1,12 +1,22 @@
-from functions.deposito import fazer_deposito
-from functions.extrato import puxar_extrato
-from functions.saque import fazer_saque
+from functions.operacoes.deposito import fazer_deposito
+from functions.operacoes.extrato import puxar_extrato
+from functions.operacoes.saque import fazer_saque
+from functions.login.login import menu_login
+
+status_login = "off"
+clientes = []
+
+mensagem_inicial = 'Bem vindo'
+print(mensagem_inicial.center(21, "="))
+
+login = menu_login(clientes, status_login)
 
 menu = """
 
 [d] Depositar
 [s] Sacar
 [e] Extrato
+[t] Trocar Conta
 [q] Sair
 
 => """
@@ -23,7 +33,7 @@ while True:
 
     if opcao == "d":
         valor = float(input("Informe o valor do Deposito: "))
-        
+
         saldo, extrato = fazer_deposito(valor, saldo, extrato)
 
     elif opcao == "s":
