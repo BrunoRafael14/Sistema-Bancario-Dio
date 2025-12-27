@@ -1,12 +1,12 @@
-def menu_login(clientes, status_login):
+from functions.contas.contas import criar_conta
+
+def menu_login(clientes, status_login, contas):
     resposta = input("Você já possui login ? (s/n): ".center(30, "-"))
     if resposta == "s" or resposta == "sim":
         return logar_usuario(clientes, status_login)
     elif resposta == "n" or resposta == "não":
-        return registrar_usuario(clientes = clientes)
+        return registrar_usuario(clientes = clientes, contas = contas)
 
-
-# Refazer Tudo isso, com POO acho que vai ser mais fácil
 
 def puxar_informacoes():
     nome = input("Informe seu nome completo: ")
@@ -16,18 +16,20 @@ def puxar_informacoes():
     endereco = input("informe seu endereço (Logradouro, n°, bairro, cidade/sigla do estado): ").split(", ")
     endereco = "-".join(endereco)    
 
-    cliente = {
+    cliente_dados = {
         "Nome": nome,
         "CPF": cpf,
-        "Data de Nascimento": data_nascimento,
         "Senha": senha,
+        "Data de Nascimento": data_nascimento,
         "Endereço": endereco
     }
 
-    return cliente
+    return cliente_dados
 
-def registrar_usuario(*, clientes):
-    cliente = puxar_informacoes()
+
+def registrar_usuario(*, clientes, contas):
+    cliente_dados = puxar_informacoes()
+    cliente = criar_conta(cliente_dados=cliente_dados, contas=contas, clientes=clientes)
     clientes = cliente
     print(clientes)
 
@@ -35,12 +37,12 @@ def registrar_usuario(*, clientes):
 
 
 
-# aqui ainda vou ver como vai funcionar a questão de login, nesse caso, só vai ter acesso as funcionalidades de status = on ?, irei ver melhor
+# Para terminar esse, primeiro terei que criar a opção de criar conta, para posteriormente com o login, puxar essa conta principal
 def logar_usuario(clientes, status_login, /):
     cpf = input("Informe seu CPF (Sem pontos ou espaços): ")
     senha = input("Informe senha para login")
 
     if cpf in clientes and senha in clientes:
-        status_login="on"
+        pass
     else:
         print("Usuário Não encontrado")

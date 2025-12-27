@@ -5,11 +5,12 @@ from functions.login.login import menu_login
 
 status_login = "off"
 clientes = []
+contas = []
 
 mensagem_inicial = 'Bem vindo'
 print(mensagem_inicial.center(21, "="))
 
-login = menu_login(clientes, status_login)
+login = menu_login(clientes, status_login, contas)
 
 menu = """
 
@@ -30,7 +31,6 @@ LIMITE_SAQUES = 3
 while True:
 
     opcao = input(menu)
-
     if opcao == "d":
         valor = float(input("Informe o valor do Deposito: "))
 
@@ -41,10 +41,12 @@ while True:
 
         saldo, extrato, numero_saques = fazer_saque(valor=valor, extrato=extrato, saldo=saldo, limite=limite, numero_saques=numero_saques, LIMITE_SAQUES=LIMITE_SAQUES)
 
-
     elif opcao == "e":
         puxar_extrato(extrato, saldo=saldo)
 
+    elif opcao == "t":
+        pass
+    
     elif opcao == "q":
         break
 
