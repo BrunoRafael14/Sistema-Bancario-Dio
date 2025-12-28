@@ -17,7 +17,7 @@ def puxar_informacoes():
     endereco = input("informe seu endereço (Logradouro, n°, bairro, cidade/sigla do estado): ").split(", ")
     endereco = "-".join(endereco)    
 
-    cliente_dados = {
+    cliente = {
         "Nome": nome,
         "CPF": cpf,
         "Senha": senha,
@@ -25,23 +25,29 @@ def puxar_informacoes():
         "Endereço": endereco
     }
 
-    return cliente_dados
+    return cliente
 
 
 def registrar_usuario(*, clientes, contas):
-    cliente_dados = puxar_informacoes()
-    cliente = criar_conta(cliente_dados=cliente_dados, contas=contas)
-    clientes.append(cliente)
-    print(clientes)
+    cliente = puxar_informacoes()
+    for c in clientes:
+        if c["CPF"] == cliente["CPF"]: 
+            print("Usuário já existente, favor fazer login")
+            return
+
+    clientes.append(cliente) 
+    contas = criar_conta(clientes=clientes, contas=contas)
 
 
 def logar_usuario(clientes, status_login, /):
     cpf = input("Informe seu CPF (Sem pontos ou espaços): ")
-    senha = input("Informe senha para login")
+    senha = input("Informe senha para login: ")
 
     for cliente in clientes:
         if cliente["CPF"] == cpf and cliente["Senha"] == senha:
-            status_login = "on"
+            status_login["Status"] = "on"
+            status_login["CPF"] = cpf
+            #Tirar esse print
             print(status_login)
         else:
             print("Usuário Não encontrado")

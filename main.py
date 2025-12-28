@@ -3,8 +3,14 @@ from functions.operacoes.extrato import puxar_extrato
 from functions.operacoes.saque import fazer_saque
 from functions.login.login import menu_login
 
-status_login = "off"
-clientes = []
+status_login = {"Status": "off"}
+clientes = [{
+        "Nome": 0,
+        "CPF": "1",
+        "Senha": "2",
+        "Data de Nascimento": 3,
+        "Endereço": 4
+}]
 contas = []
 
 mensagem_inicial = 'Bem vindo'
