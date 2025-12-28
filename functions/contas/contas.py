@@ -1,4 +1,4 @@
-def criar_conta(*, cliente_dados, contas, clientes):
+def criar_conta(*, cliente_dados, contas):
     if contas:
         conta = contas[-1]["Número da Conta"] + 1
     else:

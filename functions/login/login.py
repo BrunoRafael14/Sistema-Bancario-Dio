@@ -1,11 +1,12 @@
 from functions.contas.contas import criar_conta
 
 def menu_login(clientes, status_login, contas):
-    resposta = input("Você já possui login ? (s/n): ".center(30, "-"))
-    if resposta == "s" or resposta == "sim":
-        return logar_usuario(clientes, status_login)
-    elif resposta == "n" or resposta == "não":
-        return registrar_usuario(clientes = clientes, contas = contas)
+    while True:
+        resposta = input("Você já possui login ? (s/n): ".center(30, "-"))
+        if resposta == "s" or resposta == "sim":
+            return logar_usuario(clientes, status_login)
+        elif resposta == "n" or resposta == "não":
+            registrar_usuario(clientes = clientes, contas = contas)
 
 
 def puxar_informacoes():
@@ -29,20 +30,18 @@ def puxar_informacoes():
 
 def registrar_usuario(*, clientes, contas):
     cliente_dados = puxar_informacoes()
-    cliente = criar_conta(cliente_dados=cliente_dados, contas=contas, clientes=clientes)
-    clientes = cliente
+    cliente = criar_conta(cliente_dados=cliente_dados, contas=contas)
+    clientes.append(cliente)
     print(clientes)
 
-    return clientes
 
-
-
-# Para terminar esse, primeiro terei que criar a opção de criar conta, para posteriormente com o login, puxar essa conta principal
 def logar_usuario(clientes, status_login, /):
     cpf = input("Informe seu CPF (Sem pontos ou espaços): ")
     senha = input("Informe senha para login")
 
-    if cpf in clientes and senha in clientes:
-        pass
-    else:
-        print("Usuário Não encontrado")
+    for cliente in clientes:
+        if cliente["CPF"] == cpf and cliente["Senha"] == senha:
+            status_login = "on"
+            print(status_login)
+        else:
+            print("Usuário Não encontrado")
