@@ -4,13 +4,7 @@ from functions.operacoes.saque import fazer_saque
 from functions.login.login import menu_login
 
 status_login = {"Status": "off"}
-clientes = [{
-        "Nome": 0,
-        "CPF": "1",
-        "Senha": "2",
-        "Data de Nascimento": 3,
-        "Endereço": 4
-}]
+clientes = []
 contas = []
 
 mensagem_inicial = 'Bem vindo'
@@ -40,15 +34,15 @@ while True:
     if opcao == "d":
         valor = float(input("Informe o valor do Deposito: "))
 
-        saldo, extrato = fazer_deposito(valor, saldo, extrato)
+        saldo, extrato = fazer_deposito(valor, saldo, extrato, contas, status_login)
 
     elif opcao == "s":
         valor = float(input("Informe o valor do saque: "))
 
-        saldo, extrato, numero_saques = fazer_saque(valor=valor, extrato=extrato, saldo=saldo, limite=limite, numero_saques=numero_saques, LIMITE_SAQUES=LIMITE_SAQUES)
+        fazer_saque(valor=valor, contas=contas, status_login=status_login)
 
     elif opcao == "e":
-        puxar_extrato(extrato, saldo=saldo)
+        puxar_extrato(contas, status_login=status_login)
 
     elif opcao == "t":
         pass

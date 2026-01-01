@@ -34,9 +34,15 @@ def registrar_usuario(*, clientes, contas):
         if c["CPF"] == cliente["CPF"]: 
             print("Usuário já existente, favor fazer login")
             return
+        
+    contas = criar_conta(cliente=cliente, contas=contas)
+    for conta in contas:
+        if conta["CPF"] == cliente["CPF"]:
+            cliente.update({"Contas": [conta["Número da Conta"]]})
+            print(cliente)
 
     clientes.append(cliente) 
-    contas = criar_conta(clientes=clientes, contas=contas)
+    
 
 
 def logar_usuario(clientes, status_login, /):
@@ -47,6 +53,7 @@ def logar_usuario(clientes, status_login, /):
         if cliente["CPF"] == cpf and cliente["Senha"] == senha:
             status_login["Status"] = "on"
             status_login["CPF"] = cpf
+            status_login["Conta Ativa"] = cliente["Contas"][0]
             #Tirar esse print
             print(status_login)
         else:
