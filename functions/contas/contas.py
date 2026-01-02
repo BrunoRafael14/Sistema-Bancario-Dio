@@ -41,7 +41,7 @@ def trocar_conta(contas, status_login):
     puxar_conta(contas, status_login)
 
 
-# Função para puxar quais contas contas tem no CPF da pessoa logada
+# Função para puxar quais contas tem no CPF da pessoa logada
 def puxar_conta(contas, status_login):
     for conta in contas:
         if conta["CPF"] == status_login["CPF"]:
