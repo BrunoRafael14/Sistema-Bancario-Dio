@@ -1,4 +1,4 @@
-def fazer_deposito(valor, saldo, extrato, contas, status_login):
+def fazer_deposito(valor, contas, status_login):
         if valor > 0:
             for c in contas:
                 if c["Número da Conta"] == status_login["Conta Ativa"]:
@@ -6,5 +6,4 @@ def fazer_deposito(valor, saldo, extrato, contas, status_login):
                     c["extrato"] += f"Depósito: R$ {valor:.2f}\n"
         else:
             print("Operação falhou! O valor informado é inválido.")
-    
-        return saldo, extrato
+            

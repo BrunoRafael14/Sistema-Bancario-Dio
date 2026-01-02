@@ -2,6 +2,7 @@ from functions.operacoes.deposito import fazer_deposito
 from functions.operacoes.extrato import puxar_extrato
 from functions.operacoes.saque import fazer_saque
 from functions.login.login import menu_login
+from functions.contas.contas import menu_contas
 
 status_login = {"Status": "off"}
 clientes = []
@@ -17,16 +18,11 @@ menu = """
 [d] Depositar
 [s] Sacar
 [e] Extrato
-[t] Trocar Conta
+[c] Conta
 [q] Sair
 
 => """
 
-saldo = 0
-limite = 500
-extrato = ""
-numero_saques = 0
-LIMITE_SAQUES = 3
 
 while True:
 
@@ -34,7 +30,7 @@ while True:
     if opcao == "d":
         valor = float(input("Informe o valor do Deposito: "))
 
-        saldo, extrato = fazer_deposito(valor, saldo, extrato, contas, status_login)
+        fazer_deposito(valor, contas, status_login)
 
     elif opcao == "s":
         valor = float(input("Informe o valor do saque: "))
@@ -44,8 +40,8 @@ while True:
     elif opcao == "e":
         puxar_extrato(contas, status_login=status_login)
 
-    elif opcao == "t":
-        pass
+    elif opcao == "c":
+        menu_contas(status_login, contas)
     
     elif opcao == "q":
         break
