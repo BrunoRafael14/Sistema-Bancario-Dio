@@ -53,7 +53,7 @@ def logar_usuario(clientes, status_login, /):
         if cliente["CPF"] == cpf and cliente["Senha"] == senha:
             status_login["Status"] = "on"
             status_login["CPF"] = cpf
-            status_login["Conta Ativa"] = cliente["Contas"][0]
+            status_login["Conta Ativa"] = int(cliente["Contas"][0])
             #Tirar esse print
             print(status_login)
         else:

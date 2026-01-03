@@ -1,6 +1,6 @@
 def fazer_saque(*, valor, contas, status_login):
     for c in contas:
-        if c["Número da Conta"] == status_login["Conta Ativa"]:
+        if int(c["Número da Conta"]) == status_login["Conta Ativa"]:
             if valor > c["saldo"]:
                 print("Operação falhou! você não tem saldo suficiente. ")
             elif valor > c["limite"]:

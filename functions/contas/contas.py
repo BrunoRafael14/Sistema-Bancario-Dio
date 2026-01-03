@@ -26,7 +26,7 @@ def criar_conta(*, cliente, contas):
 
     contas.append({
         "CPF": cliente["CPF"],
-        "Número da Conta": conta,
+        "Número da Conta": int(conta),
         "Agência": "0001",
         "saldo" : 0,
         "limite" : 500,
@@ -41,7 +41,8 @@ def trocar_conta(contas, status_login):
     puxar_conta(contas, status_login)
 
 
-# Função para puxar quais contas tem no CPF da pessoa logada
+
+# Função para puxar quais contas tem no CPF da pessoa logada, optei por juntar a questão da exibição das contas com a escolha de qual conta trocar, mas acredito que a maneira mais organizada seja separar em funções diferentes e depois juntar
 def puxar_conta(contas, status_login):
     for conta in contas:
         if conta["CPF"] == status_login["CPF"]:
@@ -53,5 +54,8 @@ Agência: {conta["Agência"]}
 ======================
 """
             print(exibicao)
+
+    opcao = int(input(f"Escolha qual conta pretende trocar: "))
+    status_login["Conta Ativa"] = opcao
 
 
