@@ -63,6 +63,8 @@ Sistema-Bancario-Dio/
 * Os dados **não são persistidos** (não há uso de arquivos, JSON ou banco de dados)
 * Todas as informações são armazenadas em memória durante a execução
 * O projeto segue as **restrições propostas pelo curso**, priorizando lógica e estrutura de dados
+* **Não há tratamento avançado de entradas do usuário**  
+  (validações de input serão implementadas em uma refatoração futura)
 
 ---
 
@@ -70,6 +72,7 @@ Sistema-Bancario-Dio/
 
 * Refatoração para **Programação Orientada a Objetos (POO)**
 * Persistência de dados com arquivos JSON ou banco de dados
+* Validação e sanitização de entradas do usuário
 * Criação de testes automatizados
 * Melhor separação entre regra de negócio e interface
 
